@@ -1,0 +1,75 @@
+
+ 
+ 
+
+<div style="margin: auto; width: 50%;">
+  <img src="../assets/Nezter.png">
+  <div class="card" style="width: 50%;; float: left;">
+  
+    <div class="mb-3">      
+      <label class="form-label">Name</label>
+      <input type="Name" class="form-control" id="Name" placeholder="Name" [(ngModel)]="selectedUser.Name">
+    </div>
+    <div class="mb-3">      
+      <label class="form-label">Address</label>
+      <input type="Address" class="form-control" id="Address" placeholder="Address" [(ngModel)]="selectedUser.Address">
+    </div>
+    <div class="mb-3">      
+      <label class="form-label">CellPhone</label>
+      <input type="CellPhone" class="form-control" id="CellPhone" placeholder="6444626009"  [(ngModel)]="selectedUser.CellPhone">
+    </div>
+    <div class="mb-3">     
+      <label class="form-label">ZipCode</label> 
+      <input type="ZipCode" class="form-control" id="ZipCode" placeholder="12345"  [(ngModel)]="selectedUser.ZipCode">
+    </div>
+
+    </div>
+    <div style="float: left; margin-left: 10%;">
+  
+      <div class="btn-group-vertical">
+        <button type="button" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-danger">Delete</button>
+    <button type="button" class="btn btn-success">Update</button>    
+      </div>
+      </div>
+
+</div>
+
+
+<div style="margin: auto;width: 80%; ">
+  <table class="table table-dark table-striped" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">CellPhone</th>
+        <th scope="col">ZipCode</th>
+      </tr>
+      </thead>
+    <tbody>
+        <tr *ngFor="let user of listUsers" (click)="RowSelected(user);" [class.selected]="user.Flag === true">
+        <th scope="row">{{ user.ID }}</th>
+        <td>{{ user.Name }}</td>
+        <td>{{ user.Address }}</td>
+        <td>{{ user.CellPhone | number}}</td>
+        <td>{{ user.ZipCode | number }}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between p-2">    
+
+    <ngb-pagination [collectionSize]="listUsers.length" [(page)]="page" [pageSize]="2" (pageChange)="refreshCountries()" > 
+    </ngb-pagination>
+<!--   
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshCountries()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select> -->
+  </div>
+</div>
+
+
